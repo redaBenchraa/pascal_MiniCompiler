@@ -6,8 +6,7 @@ begin
 	a := 13;
 	b := 132/17*58.52;
 	a:=17;
-	while a >= 17 do
+	while a >= 19 do
 		if a<>b then
 			b := 1.1;
-
 end.
