@@ -8,6 +8,5 @@ begin
 	a:=17;
 	while a >= 17 do
 		if a<>b then
-			b := 1.1;
-
+			b := 22.22;	
 end.
