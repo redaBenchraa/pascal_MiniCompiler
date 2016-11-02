@@ -1,3 +1,2 @@
-# pascal_MiniCompiler
-Made with love by Reda Benchraa
-.
+# Pascal MiniCompiler
+Made with ♥ by # Reda Benchraa.
