@@ -1,0 +1,16 @@
+#include "header.h"
+void IF();
+void WHILE();
+void READ();
+void WRITE();
+void AFFECT();
+void EXPR();
+void COND();
+void TERM();
+void FACT();
+void INST();
+void INSTS();
+void BLOCK();
+void VARIABLES();
+void CONSTS();
+void PROGRAM();
