@@ -10,6 +10,6 @@ void isOther();
 void readNum();
 void printToken();
 void scan();
-extern char* PROG_KEYWORDS[11];
-extern char SYMBOLS[12];
+extern char* PROG_KEYWORDS[19];
+extern char SYMBOLS[13];
 extern Errors PROG_ERR[5];

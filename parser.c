@@ -86,7 +86,58 @@ void IF(){
     COND();
     Test_Token(THEN_TOKEN);
     INST();
+    if(current_token.CODE == ELSE_TOKEN){
+        scan();
+        INST();
+    }
 }
+void FOR(){
+    Test_Token(FOR_TOKEN);
+    Test_Token(ID_TOKEN);
+    Test_Token(AFF_TOKEN);
+    Test_Token(NUM_TOKEN);
+    if(current_token.CODE == DOWNTO_TOKEN || current_token.CODE == TO_TOKEN){
+        scan();
+    }
+    Test_Token(NUM_TOKEN);
+    Test_Token(DO_TOKEN);
+    INST();
+}
+void REPEAT(){
+    Test_Token(REPEAT_TOKEN);
+    INST();
+    Test_Token(UNTIL_TOKEN);
+    COND();
+}
+void CASE(){
+    int i=0;
+    Test_Token(CASE_TOKEN);
+    Test_Token(ID_TOKEN);
+    Test_Token(OF_TOKEN);
+    Test_Token(NUM_TOKEN);
+    while(current_token.CODE == VIR_TOKEN){
+        scan();
+        Test_Token(NUM_TOKEN);
+    }
+    Test_Token(DP_TOKEN);
+    INST();
+    while(current_token.CODE == PV_TOKEN){
+        scan();
+        Test_Token(NUM_TOKEN);
+        while(current_token.CODE == VIR_TOKEN){
+            scan();
+            Test_Token(NUM_TOKEN);
+        }
+        Test_Token(DP_TOKEN);
+        INST();
+    }
+    if(current_token.CODE == ELSE_TOKEN){
+        scan();
+        INST();
+    }
+    Test_Token(END_TOKEN);
+}
+
 void AFFECT(){
     Test_Token(ID_TOKEN);
     Test_Token(AFF_TOKEN);
@@ -112,9 +163,19 @@ void INST(){
     case READ_TOKEN:
         READ();
         break;
-    default: //
+    case FOR_TOKEN:
+        FOR();
+        break;
+    case REPEAT_TOKEN:
+        REPEAT();
+        break;
+    case CASE_TOKEN:
+        CASE();
+        break;
+    default:
         break;
     }
+
 }
 void WHILE(){
     Test_Token(WHILE_TOKEN);

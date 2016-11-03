@@ -1,7 +1,7 @@
 #include "scanner.h"
 
-char* PROG_KEYWORDS[11]={"program","const","var","begin","end","if","then","while","do","read","write"};
-char SYMBOLS[12]={';','.','+','-','*','/',',','=','<','>','(',')'};
+char* PROG_KEYWORDS[19]={"program","const","var","begin","end","if","then","while","do","read","write","else","for","repeat","until","case","to","downto","of"};
+char SYMBOLS[13]={':',';','.','+','-','*','/',',','=','<','>','(',')'};
 Errors PROG_ERR[5]={
     {ERR_CAR_INC,"caractere inconnu"},
     {ERR_FILE_VID,"fichier vide"},
@@ -91,28 +91,25 @@ void readWord(){
 void isOther(){
     int i;
     for(i=0;i<sizeof(SYMBOLS)/sizeof(SYMBOLS[0]) && current_char != SYMBOLS[i];i++);
-    if(i == sizeof(SYMBOLS)/sizeof(SYMBOLS[0])){
-        if(current_char == ':'){
-            readChar();
-            if(current_char == '=') {
-                readChar();
-                initTokent(AFF_TOKEN,":=");
-            }else initTokent(ERROR_TOKEN,"ERROR_TOKEN");
-        } else initTokent(ERROR_TOKEN,"ERROR_TOKEN");
+    if(i == sizeof(SYMBOLS)/sizeof(SYMBOLS[0])){   
+    initTokent(ERROR_TOKEN,"ERROR_TOKEN");
     }else{
         char symbol[2];
         readChar();
         symbol[0] = SYMBOLS[i];
-        if((i+11 == INF_TOKEN || i+11 == SUP_TOKEN) && current_char == '=') {
+        if((i+sizeof(PROG_KEYWORDS)/sizeof(PROG_KEYWORDS[0]) == INF_TOKEN || i+sizeof(PROG_KEYWORDS)/sizeof(PROG_KEYWORDS[0]) == SUP_TOKEN) && current_char == '=') {
             symbol[1] = '=';
-            initTokent(i+15,symbol);
+            initTokent(i+sizeof(PROG_KEYWORDS)/sizeof(PROG_KEYWORDS[0])+4,symbol);
             readChar();
-        }else if(i+11 == INF_TOKEN && current_char == '>')  {
+        }else if(i+sizeof(PROG_KEYWORDS)/sizeof(PROG_KEYWORDS[0]) == INF_TOKEN && current_char == '>')  {
             initTokent(DIFF_TOKEN,"<>");
+            readChar();
+        }else if(i+sizeof(PROG_KEYWORDS)/sizeof(PROG_KEYWORDS[0]) == DP_TOKEN && current_char == '=')  {
+            initTokent(AFF_TOKEN,":=");
             readChar();
         }else {
             symbol[1] = '\0';
-            initTokent(i+11,symbol);
+            initTokent(i+sizeof(PROG_KEYWORDS)/sizeof(PROG_KEYWORDS[0]),symbol);
         }
     }
     if(current_char == -1){

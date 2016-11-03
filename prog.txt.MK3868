@@ -1,0 +1,15 @@
+program reda;
+const a=12;b=17;
+var a,b,c,d;{*{*reda*}reda*}
+begin
+        a:={*reda*}b;
+        {*reda*}
+	if a=b+1 then
+            a := 13 + 25;
+        else
+            a := 1-1;
+	while a >= 17 do
+                if a<>b then
+                   b := 1.1;
+        a := a+b/c;
+end.

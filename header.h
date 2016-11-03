@@ -18,6 +18,15 @@
         DO_TOKEN,
         READ_TOKEN,
         WRITE_TOKEN,
+        ELSE_TOKEN,
+        FOR_TOKEN,
+        REPEAT_TOKEN,
+        UNTIL_TOKEN,
+        CASE_TOKEN,
+        TO_TOKEN,
+        DOWNTO_TOKEN,
+        OF_TOKEN,
+        DP_TOKEN,
         PV_TOKEN,
         PT_TOKEN,
         PLUS_TOKEN,
@@ -62,8 +71,8 @@
     extern int current_char_indexline;
     extern TOKEN current_token;
     extern FILE* stream;
-    extern char* PROG_KEYWORDS[11];
-    extern char SYMBOLS[12];
+    extern char* PROG_KEYWORDS[19];
+    extern char SYMBOLS[13];
     extern Errors PROG_ERR[5];
 
 #endif
