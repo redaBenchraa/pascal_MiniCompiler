@@ -5,15 +5,61 @@ void Test_Token(CODES_LEX code){
         scan();
     }
     else{
-        printf("ERROR  at position (%d-%d)[ %s] \n",current_line,current_char_indexline-1,current_token.value);
+        printf("ERROR  at position [%d|%d] (%d-%d)[ %s] \n",current_token.CODE,code,current_line,current_char_indexline-1,current_token.value);
         exit(0);
     }
 }
-void EXPR(){
+void Test_Token_COND(){
+    if (current_token.CODE == EGAL_TOKEN ||
+        current_token.CODE == DIFF_TOKEN ||
+        current_token.CODE == INF_TOKEN  ||
+        current_token.CODE == SUP_TOKEN  ||
+        current_token.CODE == SUPEG_TOKEN||
+        current_token.CODE == INFEG_TOKEN)
+    {
+        scan();
 
+    }
+    else{
+        printf("ERROR  at position [%d] (%d-%d)[ %s] \n",current_token.CODE,current_line,current_char_indexline-1,current_token.value);
+        exit(0);
+    }
+}
+void FACT(){
+    switch (current_token.CODE) {
+    case ID_TOKEN:
+        scan();
+        break;
+    case NUM_TOKEN:
+        scan();
+        break;
+    case PO_TOKEN:
+        scan();
+        EXPR();
+        Test_Token(PF_TOKEN);
+        break;
+    default: //;
+        break;
+    }
+}
+void TERM(){
+    FACT();
+    while( current_token.CODE == MULT_TOKEN || current_token.CODE == DIV_TOKEN){
+        scan();
+        FACT();
+    }
+}
+void EXPR(){
+    TERM();
+    while( current_token.CODE == PLUS_TOKEN || current_token.CODE == MOINS_TOKEN){
+        scan();
+        TERM();
+    }
 }
 void COND(){
-
+    EXPR();
+    Test_Token_COND();
+    EXPR();
 }
 void READ(){
     Test_Token(READ_TOKEN);
@@ -39,6 +85,7 @@ void IF(){
     Test_Token(IF_TOKEN);
     COND();
     Test_Token(THEN_TOKEN);
+    INST();
 }
 void AFFECT(){
     Test_Token(ID_TOKEN);
@@ -121,6 +168,7 @@ void INSTS(){
     Test_Token(BEGIN_TOKEN);
     INST();
     while(current_token.CODE == PV_TOKEN){
+        scan();
         INST();
     }
     Test_Token(END_TOKEN);
@@ -136,4 +184,5 @@ void PROGRAM(){
     Test_Token(PV_TOKEN);
     BLOCK();
     Test_Token(PT_TOKEN);
+    Test_Token(EOF_TOKEN);
 }

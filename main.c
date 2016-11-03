@@ -11,19 +11,14 @@ FILE* stream;
 
 int main(int argc, char *argv[])
 {
-    stream = fopen("C:\\Users\\Reda BENCHRAA\\Documents\\Pascal_Compiler\\prog.txt","r");
+    stream = fopen("D:\\Projects\\C\\Pascal_MiniCompiler\\prog.txt","r");
     readChar();
-    while(current_char != -1){
-        scan();
-        getch();
-    }
-
-    /*
+    scan();
     PROGRAM();
     if(current_token.CODE == EOF_TOKEN){
         printf("\n --- SYNTAXE PASSED ---\n");
     }else {
         printf("\n --- SYNTAXE FAILED AT LINE %d(%s) ---\n",current_line,current_token.value);
     }
-    getch();*/
+    getch();
 }

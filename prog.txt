@@ -1,13 +1,11 @@
-program reda1;
+program reda;
 const a=12;b=17;
-var a,b,c;
+var a,b,c,d;
 begin
-	if (a=b+c) then
-	a := 13;
-	b := 132/17*58.52;
-	a:=17;
+	if a=b+1 then
+        a := 13 + 25;
 	while a >= 17 do
 		if a<>b then
-			b := 1.1;
-
+                        b := 1.1;
+        a := (a+b)/c;
 end.

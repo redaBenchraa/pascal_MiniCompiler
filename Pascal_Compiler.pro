@@ -11,3 +11,6 @@ HEADERS += \
     scanner.h \
     parser.h \
     header.h
+
+DISTFILES += \
+    prog.txt

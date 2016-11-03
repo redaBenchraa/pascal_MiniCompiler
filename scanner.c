@@ -115,6 +115,9 @@ void isOther(){
             initTokent(i+11,symbol);
         }
     }
+    if(current_char == -1){
+        initTokent(EOF_TOKEN,"END OF FILE");
+    }
 }
 void readNum(){
     char *result = (char*) malloc(sizeof(char));
@@ -131,7 +134,6 @@ void readNum(){
     if(point > 1){
            Error(ERR_NUMBER_FORMAT);
            initTokent(ERROR_TOKEN,result);
-
     }else initTokent(NUM_TOKEN,result);
 }
 void printToken(){
