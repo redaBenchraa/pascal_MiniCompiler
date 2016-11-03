@@ -59,7 +59,7 @@ void consumeSeperators(){
         if(current_char == '*') {
             consumeComment();
             readChar();
-        }
+        }else ungetc(1,stream);
     }
     while(current_char == ' ' || current_char == '\t' || current_char == '\n'){
         if( current_char == '\n') {
